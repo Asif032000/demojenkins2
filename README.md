@@ -29,7 +29,10 @@ So, let's start....
 First of all we need to create a Jenkins image. So here is the Dockerfile to create jenkins image that we will use to create jenkins container.
 
 Your Dockerfile should looks like this :
-<img src="Images/Screenshot(367)">
+
+
+<img src="Images/Screenshot (367).png" alt="image here">
+
 
 
 Save this Dockerfile and build an image from it using:
@@ -46,10 +49,11 @@ Here I am using port no. 8989 .
 
 You can check if your container is running using :
 
-docker ps 
+##docker ps 
 
 on base os
-No alt text provided for this image
+
+<img src="Images/Screenshot (368).png" alt="image here">
 
 Thus if you go to your baseos url with specified port you'll see this page:
 No alt text provided for this image
@@ -57,14 +61,17 @@ No alt text provided for this image
 the default username is admin and password can be found at location /var/lib/jenkins/secrets/initialAdminPassword
 
 Thus you'll see dashboard
-No alt text provided for this image
+
+<img src="Images/Screenshot (369).png" alt="image here">
 
 Now create a new job (job1)
-No alt text provided for this image
+
+<img src="Images/Screenshot (371).png" alt="image here">
 
 and use following configuration to pull repo from github (we have already done this in my previous article):
-No alt text provided for this image
-No alt text provided for this image
+
+<img src="Images/Screenshot (373).png" alt="image here">
+<img src="Images/Screenshot (374).png" alt="image here">
 
 here # sudo cp -r * /web will copy the code from github to your jenkins container at location /web
 
@@ -75,15 +82,17 @@ will copy it to your base os's location /web
 I have used two steps here ,however you can also directly copy to the baseos using ssh
 
 Here , the configuration for first job is complete , now for second job, configuration looks somewhat like this
-No alt text provided for this image
-No alt text provided for this image
+
+<img src="Images/Screenshot (375).png" alt="image here">
+<img src="Images/Screenshot (376).png" alt="image here">
 
 Here currently , i am deploying for only webserver , but soon i'll be updating my article for variable type of codes , we just need an if else loop in bash script to do so
 
 
 for third job we are checking if our app is working fine or not , so configuration looks like this:
-No alt text provided for this image
-No alt text provided for this image
+
+<img src="Images/Screenshot (377).png" alt="image here">
+<img src="Images/Screenshot (378).png" alt="image here">
 
 Here we are curling to the web server from our base os , if the webserver is working fine curl will return a true and exit code 0 will be returned and vice versa.
 
@@ -96,46 +105,54 @@ First thing is on our os where jenkins is running go to the location
 /etc/sysconfig/
 
 There in jenkins file add these to JENKINS_JAVA_OPTIONS :
-No alt text provided for this image
+
+<img src="Images/Screenshot (382).png" alt="image here">
 
 You can copy from here:
 
 JENKINS_JAVA_OPTIONS="-Djava.awt.headless=true -Dmail.smtp.starttls.enable=true -Dmail.smtp.ssl.protocols=TLSv1.2"
 
 Now in you Jenkins configurations, pass SMTP server and your gmail credentials:
-No alt text provided for this image
+
+<img src="Images/Screenshot (383).png" alt="image here">
 
 
 Now configure job4 like this :
-No alt text provided for this image
-No alt text provided for this image
+
+<img src="Images/Screenshot (379).png" alt="image here">
+<img src="Images/Screenshot (381).png" alt="image here">
 
 Thus if any error occurs in the web server , an automated message will be sent to the recipient's email address.
 
 Now , the last job i.e. job5 is to check for the proper working of the app , if the app crashes it'll automatically restart the app. For this I've used "build periodically" option , which will check for the app's proper working every minute
-No alt text provided for this image
-No alt text provided for this image
+
+<img src="Images/Screenshot (384).png" alt="image here">
+
+<img src="Images/Screenshot (385).png" alt="image here">
 
 That's all set , Now to visualize the flow of job we can use the build pipeline plugin in jenkins , so go to manage plugin option and install build pipeline plugin from there
-No alt text provided for this image
+
+<img src="Images/Screenshot (386).png" alt="image here">
 
 then click on new view option on the dashboard to create a view
 
 
-
-No alt text provided for this image
+<img src="Images/Screenshot (387).png" alt="image here">
 
 
 enter any view name of your choice and click on Build pipeline view
-No alt text provided for this image
+
+<img src="Images/Screenshot (388).png" alt="image here">
 
 
 select an initial job (job1 in this case)
-No alt text provided for this image
+
+<img src="Images/Screenshot (389).png" alt="image here">
 
 and click on ok
 
 Thus now you'll see an option to view the pipeline will be there , click on it and you'll see the pipeline view of all the jobs interconnected:
-No alt text provided for this image
+
+<img src="Images/Screenshot (390).png" alt="image here">
 
 
