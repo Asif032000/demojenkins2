@@ -29,7 +29,7 @@ So, let's start....
 First of all we need to create a Jenkins image. So here is the Dockerfile to create jenkins image that we will use to create jenkins container.
 
 Your Dockerfile should looks like this :
-<img src="">
+<img src="Images/Screenshot(367)">
 
 
 Save this Dockerfile and build an image from it using:
