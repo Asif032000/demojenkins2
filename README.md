@@ -37,13 +37,13 @@ Your Dockerfile should looks like this :
 
 Save this Dockerfile and build an image from it using:
 
-docker build -t imagename .
+##docker build -t imagename .
 
 Thus the image is built , now next step is to launch the Jenkins container :
 
 for that use :
 
-docker run -it --name jenki -p 8989:8080 imagename
+##docker run -it --name jenki -p 8989:8080 imagename
 
 Here I am using port no. 8989 .
 
